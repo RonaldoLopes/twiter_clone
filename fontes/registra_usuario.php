@@ -9,9 +9,13 @@
     $objdb = new db();
     $link = $objdb->conecta_mysql();
 
-    $sql = " insert into usuarios(usuario, email, senha) VALUES('$usuario','$email','$senha')"
+    //$sql = " insert into usuarios(usuario, email, senha) VALUES('$usuario','$email','$senha')"
 
     //executar a query
-    mysqli_query($link, $sql);
+    if(mysqli_query($link, "INSERT INTO usuarios(usuario, email, senha) VALUES('$usuario','$email','$senha')")){
+        echo('Registrado com sucesso');
+    }else{
+        echo('Erro');
+    }
 
 ?>
