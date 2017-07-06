@@ -1,6 +1,9 @@
 <?php
+
 	$erro = isset($_GET['erro']) ? $_GET['erro'] : 0;
+
 ?>
+
 
 <!DOCTYPE HTML>
 <html lang="pt-br">
@@ -9,10 +12,38 @@
 
 		<title>Twitter clone</title>
 
+		<!-- jquery - link cdn -->
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 		<!-- bootstrap - link cdn -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	
-		
+		<script>
+			$(document).ready( function(){
+
+				//verificar se os campos de usuário e senha foram devidamente preenchidos
+				$('#btn_login').click(function(){
+
+					var campo_vazio = false;
+
+					if($('#campo_usuario').val() == ''){
+						$('#campo_usuario').css({'border-color': '#A94442'});
+						campo_vazio = true;
+					} else {
+						$('#campo_usuario').css({'border-color': '#CCC'});
+					}
+
+					if($('#campo_senha').val() == ''){
+						$('#campo_senha').css({'border-color': '#A94442'});
+						campo_vazio = true;
+					} else {
+						$('#campo_senha').css({'border-color': '#CCC'});
+					}
+
+					if(campo_vazio) return false;
+				});
+			});					
+		</script>
 	</head>
 
 	<body>
@@ -53,11 +84,13 @@
 								<br /><br />
 								
 							</form>
+
 							<?php
 								if($erro == 1){
-									echo 'Usuário ou senha inválido';
+									echo '<font color="#FF0000">Usuário e ou senha inválido(s)</font>';
 								}
 							?>
+
 						</form>
 				  	</ul>
 	            </li>
@@ -81,9 +114,7 @@
 
 	    </div>
 	
-	<!-- jquery - link cdn -->
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="valida.js"></script>
+	
 	</body>
 </html>
